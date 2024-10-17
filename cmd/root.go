@@ -8,9 +8,7 @@ import (
 )
 
 var (
-	// Used for flags.
-	cfgFile     string
-	userLicense string
+	filePath string
 
 	rootCmd = &cobra.Command{
 		Use:   "futil",
@@ -18,13 +16,6 @@ var (
 		Long:  `File Utility`,
 	}
 )
-
-func init() {
-	cobra.OnInitialize(initConfig)
-}
-
-// TODO: init config from .env
-func initConfig() {}
 
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
