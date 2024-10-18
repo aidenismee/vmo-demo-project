@@ -11,7 +11,7 @@ import (
 
 func TestFileProcessorHandler(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "File Processor Handler Suite")
+	RunSpecs(t, "File Processor Feature Suite")
 }
 
 var _ = Describe("File Processor Handler Feature", func() {

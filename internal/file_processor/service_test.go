@@ -8,13 +8,7 @@ import (
 	. "github.com/onsi/gomega"
 	"go.uber.org/mock/gomock"
 	"os"
-	"testing"
 )
-
-func TestFileProcessorService(t *testing.T) {
-	RegisterFailHandler(Fail)
-	RunSpecs(t, "File Processor Service Suite")
-}
 
 var _ = Describe("File Processor Service Feature", func() {
 	var (
