@@ -15,3 +15,5 @@ jobs:
     if: github.event_name == 'push'
     uses: ./.github/workflows/build_docker.yaml
     needs: [build-code]
+    permissions:
+      id-token: write
