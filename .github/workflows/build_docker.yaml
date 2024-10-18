@@ -27,6 +27,6 @@ jobs:
         with:
           push: true
           context: .
-          file: ./build/package/Dockerfile
+          file: ./deployments/Dockerfile
           tag: ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.DOCKERHUB_REPOSITORY}}:latest
 
