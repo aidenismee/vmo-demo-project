@@ -13,11 +13,3 @@ func (c *CountLineInput) Validate() error {
 
 	return nil
 }
-
-func (c *CountLineInput) Stadardlize() error {
-	if c.Path == "" {
-		return errors.New("empty path")
-	}
-
-	return nil
-}

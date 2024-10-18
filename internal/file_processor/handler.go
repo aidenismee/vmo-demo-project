@@ -1,10 +1,10 @@
-package file_processer
+package file_processor
 
 import "github.com/nekizz/vmo-demo-project/internal/contract"
 
 type Service interface {
 	CountFileLine(string) (int, error)
-	CheckSum(string, string) (string, error)
+	CheckSum(path string) (string, error)
 }
 
 type Handler struct {
@@ -33,7 +33,7 @@ func (h *Handler) CheckSum(input *contract.CheckSumInput) (string, error) {
 		return "", err
 	}
 
-	resp, err := h.service.CheckSum(input.Path, input.Algo)
+	resp, err := h.service.CheckSum(input.Path)
 	if err != nil {
 		return "", err
 	}

@@ -2,10 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/nekizz/vmo-demo-project/pkg/file"
 	"log"
 
 	"github.com/nekizz/vmo-demo-project/internal/contract"
-	fileProcesser "github.com/nekizz/vmo-demo-project/internal/file-processer"
+	fileProcessor "github.com/nekizz/vmo-demo-project/internal/file_processor"
 	"github.com/spf13/cobra"
 )
 
@@ -22,8 +23,9 @@ var linecountCmd = &cobra.Command{
 }
 
 func lineCounterHandler(cmd *cobra.Command, args []string) {
-	fileProcesserSvc := fileProcesser.NewService()
-	fileProcesserHandler := fileProcesser.NewHandler(fileProcesserSvc)
+	filerSvc := file.NewService()
+	fileProcesserSvc := fileProcessor.NewService(nil, filerSvc)
+	fileProcesserHandler := fileProcessor.NewHandler(fileProcesserSvc)
 
 	count, err := fileProcesserHandler.CountFileLine(&contract.CountLineInput{Path: filePath})
 	if err != nil {

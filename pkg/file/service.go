@@ -2,14 +2,12 @@ package file
 
 import (
 	"bufio"
-	"github.com/nekizz/vmo-demo-project/internal/enum"
-	"github.com/nekizz/vmo-demo-project/pkg/utils/hash"
 	"os"
 )
 
 type Service interface {
-	CountLine(string) (int, error)
-	CheckSum(string, string) (string, error)
+	CountLine(*os.File) (int, error)
+	OpenFile(filePath string) (*os.File, error)
 }
 
 type service struct{}
@@ -18,22 +16,8 @@ func NewService() Service {
 	return &service{}
 }
 
-func (s *service) CountLine(filePath string) (int, error) {
-	var (
-		counter int
-		file    *os.File
-	)
-
-	if filePath == "-" {
-		file = os.Stdin
-	} else {
-		var err error
-		file, err = os.Open(filePath)
-		if err != nil {
-			return 0, err
-		}
-		defer file.Close()
-	}
+func (s *service) CountLine(file *os.File) (int, error) {
+	var counter int
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -47,23 +31,15 @@ func (s *service) CountLine(filePath string) (int, error) {
 	return counter, nil
 }
 
-func (s *service) CheckSum(filePath, algo string) (string, error) {
-	var file *os.File
-
+func (s *service) OpenFile(filePath string) (file *os.File, err error) {
 	if filePath == "-" {
 		file = os.Stdin
 	} else {
-		file, err := os.Open(filePath)
+		file, err = os.Open(filePath)
 		if err != nil {
-			return "", err
+			return nil, err
 		}
-		defer file.Close()
 	}
 
-	hashStr, err := hash.HashFile(file, enum.Algorithm(algo))
-	if err != nil {
-		return "", err
-	}
-
-	return hashStr, nil
+	return
 }

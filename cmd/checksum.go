@@ -3,7 +3,11 @@ package cmd
 import (
 	"fmt"
 	"github.com/nekizz/vmo-demo-project/internal/contract"
-	fileProcesser "github.com/nekizz/vmo-demo-project/internal/file-processer"
+	"github.com/nekizz/vmo-demo-project/internal/enum"
+	fileProcessor "github.com/nekizz/vmo-demo-project/internal/file_processor"
+	"github.com/nekizz/vmo-demo-project/pkg/file"
+	"github.com/nekizz/vmo-demo-project/pkg/hasher"
+	arrayUtils "github.com/nekizz/vmo-demo-project/pkg/utils/array"
 	"github.com/spf13/cobra"
 )
 
@@ -29,10 +33,12 @@ var checksumCmd = &cobra.Command{
 }
 
 func checkSumHandler(cmd *cobra.Command, args []string) {
-	fileProcesserSvc := fileProcesser.NewService()
-	fileProcesserHandler := fileProcesser.NewHandler(fileProcesserSvc)
+	hasherSvc := hasher.NewService(algo)
+	filerSvc := file.NewService()
+	fileProcesserSvc := fileProcessor.NewService(hasherSvc, filerSvc)
+	fileProcesserHandler := fileProcessor.NewHandler(fileProcesserSvc)
 
-	sum, err := fileProcesserHandler.CheckSum(&contract.CheckSumInput{Path: filePath, Algo: algo})
+	sum, err := fileProcesserHandler.CheckSum(&contract.CheckSumInput{Path: filePath})
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -56,6 +62,10 @@ func validateFlag(cmd *cobra.Command, args []string) error {
 			algo = key
 			count++
 		}
+	}
+
+	if !arrayUtils.Contains([]enum.Algorithm{enum.Sha256, enum.Sha1, enum.Md5}, enum.Algorithm(algo)) {
+		return fmt.Errorf("invalid algorithm")
 	}
 
 	return nil

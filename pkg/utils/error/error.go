@@ -1,6 +1,8 @@
-package file_processer
+package error
 
-import "errors"
+import (
+	"errors"
+)
 
 var (
 	ErrInvalidInput = errors.New("invalid input")
