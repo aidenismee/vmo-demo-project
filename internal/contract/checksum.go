@@ -1,7 +1,7 @@
 package contract
 
 import (
-	"errors"
+	appError "github.com/nekizz/vmo-demo-project/pkg/utils/app_error"
 )
 
 type CheckSumInput struct {
@@ -10,7 +10,7 @@ type CheckSumInput struct {
 
 func (c *CheckSumInput) Validate() error {
 	if c.Path == "" {
-		return errors.New("empty path")
+		return appError.ErrEmptyPath
 	}
 
 	return nil

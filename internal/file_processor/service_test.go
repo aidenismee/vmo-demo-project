@@ -2,8 +2,8 @@ package file_processor
 
 import (
 	"errors"
-	filePkg "github.com/nekizz/vmo-demo-project/pkg/file"
-	"github.com/nekizz/vmo-demo-project/pkg/hasher"
+	filerPkg "github.com/nekizz/vmo-demo-project/pkg/filer"
+	hasherPkg "github.com/nekizz/vmo-demo-project/pkg/hasher"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"go.uber.org/mock/gomock"
@@ -14,14 +14,14 @@ var _ = Describe("File Processor Service Feature", func() {
 	var (
 		ctrl          *gomock.Controller
 		target        *service
-		filerService  *filePkg.MockService
-		hasherService *hasher.MockService
+		filerService  *filerPkg.MockFiler
+		hasherService *hasherPkg.MockHasher
 	)
 
 	BeforeEach(func() {
 		ctrl = gomock.NewController(GinkgoT())
-		filerService = filePkg.NewMockService(ctrl)
-		hasherService = hasher.NewMockService(ctrl)
+		filerService = filerPkg.NewMockFiler(ctrl)
+		hasherService = hasherPkg.NewMockHasher(ctrl)
 		target = NewService(hasherService, filerService)
 	})
 
@@ -106,7 +106,7 @@ var _ = Describe("File Processor Service Feature", func() {
 		})
 
 		When("check sum failed", func() {
-			It("check sum failed, should return error", func() {
+			It("open file failed, should return error", func() {
 				input := "myfile.txt"
 				expectLine := ""
 

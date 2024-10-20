@@ -1,22 +1,22 @@
-package file
+package filer
 
 import (
 	"bufio"
 	"os"
 )
 
-type Service interface {
+type Filer interface {
 	CountLine(*os.File) (int, error)
 	OpenFile(filePath string) (*os.File, error)
 }
 
-type service struct{}
+type filer struct{}
 
-func NewService() Service {
-	return &service{}
+func NewFiler() Filer {
+	return &filer{}
 }
 
-func (s *service) CountLine(file *os.File) (int, error) {
+func (s *filer) CountLine(file *os.File) (int, error) {
 	var counter int
 
 	scanner := bufio.NewScanner(file)
@@ -31,7 +31,7 @@ func (s *service) CountLine(file *os.File) (int, error) {
 	return counter, nil
 }
 
-func (s *service) OpenFile(filePath string) (file *os.File, err error) {
+func (s *filer) OpenFile(filePath string) (file *os.File, err error) {
 	if filePath == "-" {
 		file = os.Stdin
 	} else {

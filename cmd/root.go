@@ -9,7 +9,7 @@ var (
 	filePath string
 
 	rootCmd = &cobra.Command{
-		Use:   "futil",
+		Use:   "futil [flags]",
 		Short: "futil service root command",
 		Long:  `File Utility`,
 	}
