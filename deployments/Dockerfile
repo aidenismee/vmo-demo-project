@@ -11,14 +11,15 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o /application .
+RUN go build -o /futil .
 
 FROM ${DEBIAN_IMAGE} AS app
 
 WORKDIR /
 
-COPY --from=builder ["/application", "/"]
+COPY --from=builder ["/futil", "/"]
 
 EXPOSE 8080
 
-CMD ["/application"]
+ENTRYPOINT ["./futil"]
+CMD ["version"]

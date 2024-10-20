@@ -12,11 +12,17 @@ This is an CLI `application` for utility tool for file processing. With easy-to-
 - Linux based OS is preferred
 - Docker (version 20.10.21 is preferred) with compose plugin or *docker-compose*
 - Go (version 1.20+)
+- Make
 
 ## How to Build and Run the Project
 1. Clone the Repository:
-2. Build the project: make build
-3. Run the application: futil help
+   - `git clone https://github.com/aidenismee/vmo-demo-project.git`
+2. Build the binary:
+   - `make build`
+3. Go to bin directory:
+    - `cd bin`
+3. Run the application: 
+   - `./futil help`
 
 ## Technical choice:
 - Cobra: [Golang Cobra](https://github.com/spf13/cobra/)
@@ -27,7 +33,7 @@ This is an CLI `application` for utility tool for file processing. With easy-to-
 ## Architecture
 ### Project Architecture
 - Domain based approach with a loosely applied layered architecture is utilized for this project.
-- `cmd` directory is the default directory created by `Cobra` for a command based project. This folder includes command implementations and serves as the entry point for different application commands
+- `cmd` directory is the default directory created by `Cobra` for a command based project. This folder includes command implementations and serves as the entrypoint for different application commands.
 - The `internal` directory contains packages that encapsulate business logic or application-specific functionality. This could also include utility functions used across the project.
 - Within the `internal` directory, each entity has its own directory containing its specific logic and handler.
 - `contract` directory define the request and response of handler.
@@ -84,7 +90,7 @@ This is an CLI `application` for utility tool for file processing. With easy-to-
 ```
 
 ### Assessments
-* **Architecture**: The logic is divided into 2 separate layer: handler, and service layer. Each layer has one single purpose (handler to validate and handle requests from clients, service for data handling and conversion) and independent of one and another.
+* **Architecture**: The logic is divided into separate layers: handler, and service layer. Each layer has one single purpose (handler to validate and handle requests from clients, service for data handling and conversion) and independent of one and another.
 * **Clarity**: The project purpose, architecture, structure and assessment criteria are explained clearly in the `README.md` file.
 * **Code quality**: The source code is well organized with few nested functions and directory along with clear structure, logic block and easy to navigate structure.
 * **Usability**: the project is suitable for multiple clients, even with physical constraint as the source code is relatively lightweight and required no extensive CPU or memory to execute.

@@ -12,19 +12,18 @@ test: install
 	go test ./...
 
 build: install
-	go build -ldflags "-X main.version=$(TAG)" -o ./bin/vmo-demo-project .
+	go build -ldflags "-X main.version=$(TAG)" -o ./bin/futil .
 
 gen-mock:
 	mockgen -destination pkg/filer/mock.go -package=filer github.com/nekizz/vmo-demo-project/pkg/filer Filer
 	mockgen -destination pkg/hasher/mock.go -package=hasher github.com/nekizz/vmo-demo-project/pkg/hasher Hasher
 	mockgen -destination internal/file_processor/mock.go -package=file_processor github.com/nekizz/vmo-demo-project/internal/file_processor Service
 
-
 docker-build:
-	docker build --file ./deployments/Dockerfile -t $(DOCKER_USERNAME)/vmo-demo-project .
+	docker build --file ./deployments/Dockerfile -t $(DOCKER_USERNAME)/$(APPLICATION_NAME) .
 
 docker-push:
-	docker push ${DOCKER_USERNAME}/${APPLICATION_NAME}
+	docker push $(DOCKER_USERNAME)/$(APPLICATION_NAME)
 
 docker-compose:
 	docker-compose -f ./deployments/docker-compose up -d --build
