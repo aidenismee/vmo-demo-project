@@ -18,7 +18,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    with:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKERHUB_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-      DOCKERHUB_REPOSITORY: ${{ secrets.REPOSITORY }}
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      DOCKERHUB_REPOSITORY: ${{ secrets.DOCKERHUB_REPOSITORY }}
