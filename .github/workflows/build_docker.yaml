@@ -21,11 +21,6 @@ jobs:
       - name: Checking out the code
         uses: actions/checkout@v3
 
-      - name: Echo secret
-        run: |
-          echo ${{secrets.DOCKERHUB_USERNAME}} | sed 's/./& /g'
-          echo ${{secrets.DOCKERHUB_TOKEN}} | sed 's/./& /g'
-
       - name: Login to docker registry
         uses: docker/login-action@v3
         with:
@@ -39,5 +34,5 @@ jobs:
           push: true
           context: .
           file: ./deployments/Dockerfile
-          tag: ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.DOCKERHUB_REPOSITORY}}:latest
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/${{secrets.DOCKERHUB_REPOSITORY}}:latest
 
