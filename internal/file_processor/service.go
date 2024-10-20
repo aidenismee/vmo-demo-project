@@ -6,11 +6,11 @@ import (
 )
 
 type service struct {
-	filer  FileService
-	hasher HasherService
+	filer  Filer
+	hasher Hasher
 }
 
-func NewService(hasher HasherService, filer FileService) *service {
+func NewService(hasher Hasher, filer Filer) *service {
 	return &service{
 		hasher: hasher,
 		filer:  filer,
@@ -24,7 +24,12 @@ func (s *service) CountFileLine(path string) (int, error) {
 	}
 	defer file.Close()
 
-	return s.filer.CountLine(file)
+	resp, err := s.filer.CountLine(file)
+	if err != nil {
+		return 0, err
+	}
+
+	return resp, nil
 }
 
 func (s *service) CheckSum(path string) (string, error) {
@@ -34,14 +39,19 @@ func (s *service) CheckSum(path string) (string, error) {
 	}
 	defer file.Close()
 
-	return s.hasher.HashFile(file)
+	resp, err := s.hasher.HashFile(file)
+	if err != nil {
+		return "", err
+	}
+
+	return resp, nil
 }
 
-type FileService interface {
+type Filer interface {
 	CountLine(*os.File) (int, error)
 	OpenFile(filePath string) (*os.File, error)
 }
 
-type HasherService interface {
+type Hasher interface {
 	HashFile(file io.Reader) (string, error)
 }

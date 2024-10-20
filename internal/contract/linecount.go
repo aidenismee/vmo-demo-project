@@ -1,6 +1,8 @@
 package contract
 
-import "errors"
+import (
+	appError "github.com/nekizz/vmo-demo-project/pkg/utils/app_error"
+)
 
 type CountLineInput struct {
 	Path string
@@ -8,7 +10,7 @@ type CountLineInput struct {
 
 func (c *CountLineInput) Validate() error {
 	if c.Path == "" {
-		return errors.New("empty path")
+		return appError.ErrEmptyPath
 	}
 
 	return nil

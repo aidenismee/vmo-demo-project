@@ -15,8 +15,8 @@ build: install
 	go build -ldflags "-X main.version=$(TAG)" -o ./bin/vmo-demo-project .
 
 gen-mock:
-	mockgen -destination pkg/file/mock.go -package=file github.com/nekizz/vmo-demo-project/pkg/file Service
-	mockgen -destination pkg/hasher/mock.go -package=hasher github.com/nekizz/vmo-demo-project/pkg/hasher Service
+	mockgen -destination pkg/filer/mock.go -package=filer github.com/nekizz/vmo-demo-project/pkg/filer Filer
+	mockgen -destination pkg/hasher/mock.go -package=hasher github.com/nekizz/vmo-demo-project/pkg/hasher Hasher
 	mockgen -destination internal/file_processor/mock.go -package=file_processor github.com/nekizz/vmo-demo-project/internal/file_processor Service
 
 
