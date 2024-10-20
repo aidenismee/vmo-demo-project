@@ -16,7 +16,7 @@ This is an CLI `application` for utility tool for file processing. With easy-to-
 ## How to Build and Run the Project
 1. Clone the Repository:
 2. Build the project: make build
-3. Run the application: ./bin/vmo-demo-project help
+3. Run the application: futil help
 
 ## Technical choice:
 - Cobra: [Golang Cobra](https://github.com/spf13/cobra/)
@@ -84,7 +84,7 @@ This is an CLI `application` for utility tool for file processing. With easy-to-
 ```
 
 ### Assessments
-* **Architecture**: The logic is divided into 3 separate layer: handler, and service layer. Each layer has one single purpose (handler to validate and handle requests from clients, service for data handling and conversion) and independent of one and another.
+* **Architecture**: The logic is divided into 2 separate layer: handler, and service layer. Each layer has one single purpose (handler to validate and handle requests from clients, service for data handling and conversion) and independent of one and another.
 * **Clarity**: The project purpose, architecture, structure and assessment criteria are explained clearly in the `README.md` file.
 * **Code quality**: The source code is well organized with few nested functions and directory along with clear structure, logic block and easy to navigate structure.
 * **Usability**: the project is suitable for multiple clients, even with physical constraint as the source code is relatively lightweight and required no extensive CPU or memory to execute.
