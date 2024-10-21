@@ -8,7 +8,7 @@ export TAG
 install:
 	go get .
 
-test: install
+run-test:
 	go test ./...
 
 build: install
@@ -25,11 +25,3 @@ docker-build:
 docker-push:
 	docker push $(DOCKER_USERNAME)/$(APPLICATION_NAME)
 
-docker-compose:
-	docker-compose -f ./deployments/docker-compose up -d --build
-
-docker-compose-down:
-	docker-compose -f ./deployments/docker-compose down
-
-run-test:
-	go test ./...

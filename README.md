@@ -10,7 +10,7 @@ This is an CLI `application` for utility tool for file processing. With easy-to-
 
 ## Prerequisite:
 - Linux based OS is preferred
-- Docker (version 20.10.21 is preferred) with compose plugin or *docker-compose*
+- Docker (version 20.10.21 is preferred)
 - Go (version 1.20+)
 - Make
 
@@ -54,7 +54,6 @@ This is an CLI `application` for utility tool for file processing. With easy-to-
 │  ├── root.go
 │  └── version.go
 ├── deployments
-│  ├── docker-compose.yaml
 │  └── Dockerfile
 ├── internal
 │  ├── contract
