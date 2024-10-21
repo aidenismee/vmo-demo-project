@@ -19,7 +19,5 @@ WORKDIR /
 
 COPY --from=builder ["/futil", "/"]
 
-EXPOSE 8080
-
 ENTRYPOINT ["./futil"]
 CMD ["version"]
