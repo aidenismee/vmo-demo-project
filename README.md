@@ -93,11 +93,11 @@ This is an CLI `application` for utility tool for file processing. With easy-to-
 * **Architecture**: The logic is divided into separate layers: handler, and service layer. Each layer has one single purpose (handler to validate and handle requests from clients, service for data handling and conversion) and independent of one and another.
 * **Clarity**: The project purpose, architecture, structure and assessment criteria are explained clearly in the `README.md` file.
 * **Code quality**: The source code is well organized with few nested functions and directory along with clear structure, logic block and easy to navigate structure.
-* **Usability**: the project is suitable for multiple clients, even with physical constraint as the source code is relatively lightweight and required no extensive CPU or memory to execute.
+* **Usability**: The project is suitable for multiple clients, even with physical constraint as the source code is relatively lightweight and required no extensive CPU or memory to execute.
 * **Security**: No obvious security flaw is witness during the development and testing process.
-* **Testing**: basic unit test for some important functions is included to demonstrate testing coverage of the project.
-* **Technical choices**: the decision of using Cobra and Ginkgo are both lightweight and suitable for this kind of project given the time-constraint and project complexity.
-* **Production-readiness**: error handling and logging are included. Monitoring and tracing are not implemented due to the time-constraint.
+* **Testing**: Basic unit test for some important functions is included to demonstrate testing coverage of the project.
+* **Technical choices**: The decision of using Cobra and Ginkgo are both lightweight and suitable for this kind of project given the time-constraint and project complexity.
+* **Production-readiness**: Error handling and logging are included. Monitoring and tracing are not implemented due to the time-constraint.
 * **Scalability**: The scalability can be achieved relative easily thanks to the separation of important layers.
 
 
