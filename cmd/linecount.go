@@ -24,10 +24,10 @@ var linecountCmd = &cobra.Command{
 
 func lineCounterHandler(cmd *cobra.Command, args []string) {
 	filer := filerPkg.NewFiler()
-	fileProcesserSvc := fileProcessor.NewService(nil, filer)
-	fileProcesserHandler := fileProcessor.NewHandler(fileProcesserSvc)
+	fileProcessorSvc := fileProcessor.NewService(nil, filer)
+	fileProcessorHandler := fileProcessor.NewHandler(fileProcessorSvc)
 
-	result, err := fileProcesserHandler.CountFileLine(&contract.CountLineInput{Path: filePath})
+	result, err := fileProcessorHandler.CountFileLine(&contract.CountLineInput{Path: filePath})
 	if err != nil {
 		log.Fatalf("Err: %s", err)
 	}
