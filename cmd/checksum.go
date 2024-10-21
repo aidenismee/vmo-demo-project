@@ -36,10 +36,10 @@ var checksumCmd = &cobra.Command{
 func checkSumHandler(cmd *cobra.Command, args []string) {
 	filer := filerPkg.NewFiler()
 	hasher := hasherPkg.NewHasher(algo)
-	fileProcesserSvc := fileProcessor.NewService(hasher, filer)
-	fileProcesserHandler := fileProcessor.NewHandler(fileProcesserSvc)
+	fileProcessorSvc := fileProcessor.NewService(hasher, filer)
+	fileProcessorHandler := fileProcessor.NewHandler(fileProcessorSvc)
 
-	result, err := fileProcesserHandler.CheckSum(&contract.CheckSumInput{Path: filePath})
+	result, err := fileProcessorHandler.CheckSum(&contract.CheckSumInput{Path: filePath})
 	if err != nil {
 		log.Fatalf("Err: %s", err.Error())
 	}
